@@ -1,0 +1,17 @@
+        .register-body {
+            background-image: url(../img/login.jpg);
+            background-size: cover;
+        }
+        
+        .head-name {
+            color: azure
+        }
+        
+        .main-box {
+            background-color: ghostwhite;
+            border-radius: 10px;
+        }
+
+        .had-account{
+            padding-top:10px;
+        }

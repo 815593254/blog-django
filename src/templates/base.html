@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <title>{% block head_title %}iBlog{% endblock head_title %}</title>
+
+     {% block styles %}
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="{% static 'libs/adminlte/2.3.11/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'libs/font-awesome/4.7.0/css/font-awesome.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'libs/ionicons/2.0.1/css/ionicons.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'libs/adminlte/2.3.11/dist/css/AdminLTE.min.css' %}">
+    {% endblock styles %}
+
+    {% block head_extra %}{% endblock head_extra %}
+</head>
+{% block page_body %}
+<body>
+
+
+    <div id="fb-root"></div>
+
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url "posts:list" %}">Home</a></li>
+            {% block post_detail_link %}
+            {% endblock %}
+        
+            {% if not request.user.is_authenticated %}
+            <li class="pull-right"><a href="{% url "register" %}">Register</a></li>
+            <li class="pull-right"><a href="{% url "login" %}">Login</a></li>
+            {% else %}
+           
+            <li class="pull-right"> 
+                <a href="{% url 'accounts:logout' %}">Logout</a>
+            </li>
+			<li class ="pull-right"><a href="{% url 'accounts:passwordchange' %}">Changepassword</a></li>
+            <span style="float: right; margin-right: 5px">
+                Logged in as: <b>{{ request.user }}</b> 
+            </span>
+            {% endif %}
+        </ol>
+        {% include "messages_display.html" %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+
+
+    {% block scripts %}
+    <script src="{% static 'libs/adminlte/2.3.11/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+    <script src="{% static 'libs/adminlte/2.3.11/bootstrap/js/bootstrap.min.js' %}"></script>
+    {% endblock scripts %}
+
+    <!-- Custom -->
+    {% block extra_footer %}
+    {% endblock extra_footer %}
+</body>
+{% endblock page_body %}
+</html>

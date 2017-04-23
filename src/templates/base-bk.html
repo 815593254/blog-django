@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block head_title %}Blog{% endblock head_title %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block head_extra %}{% endblock head_extra %}
+</head>
+<body>
+    <div id="fb-root"></div>
+
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url "posts:list" %}">Home</a></li>
+            {% block post_detail_link %}
+            {% endblock %}
+        
+            {% if not request.user.is_authenticated %}
+            <li class="pull-right"><a href="{% url "register" %}">Register</a></li>
+            <li class="pull-right"><a href="{% url "login" %}">Login</a></li>
+            {% else %}
+           
+            <li class="pull-right"> 
+                <a href="{% url "logout" %}">Logout</a>
+            </li>
+			<li class ="pull-right"><a href="{% url "passwordchange" %}">Changepassword</a></li>
+            <span style="float: right; margin-right: 5px">
+                Logged in as: <b>{{ request.user }}</b> 
+            </span>
+            {% endif %}
+        </ol>
+        {% include "messages_display.html" %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Markdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+
+    <!-- Magnific Popup (form picture zoom) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="text/javascript"></script>
+
+    <!-- Custom -->
+    {% block extra_footer %}
+    {% endblock extra_footer %}
+</body>
+</html>

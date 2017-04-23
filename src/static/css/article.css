@@ -1,0 +1,56 @@
+.user-head-portrait{
+    width:200px;
+    height:200px;
+    border-radius: 10px;
+}
+.iblog-index{
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    color: #fff;
+    font-family: fontAwesome;
+}
+.iblog-index:hover{
+    background: rgba(0,0,0,0.1);
+    color: #f6f6f6;
+}
+.user-info-box{
+    margin-top:10px;
+}
+.name-info{
+    padding: 20px 5px 10px 5px;
+    line-height: 1;
+    color:#fff;
+}
+.user-info-div{
+    width:188px;
+    margin:auto;
+}
+.user-info-li{
+    background-color: #666;
+    color:#ddd;
+    border: 0px;
+}
+.operation-button{
+    width:200px;
+    margin:auto;
+    position: relative;
+    right:8px;
+}
+.search-form{
+    width:188px;
+    position:relative;
+    left:11px;
+}
+.jump-to-top{
+    width:100px;
+    height:100px;
+    position: fixed;
+    right:50px;
+    bottom:-15px;
+    z-index:9999;
+}
+.article-header{
+    font-family:"Microsoft YaHei"
+}
